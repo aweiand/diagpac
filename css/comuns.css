@@ -1,0 +1,48 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+.datas {
+	width: 90px;
+	font-family: Georgia;
+}
+
+.numPP{
+    font-family: monospace;
+    font-size: 12px;
+    width: 35px;
+	text-align: center;
+	margin: 3px;
+}
+
+.numP{
+    font-family: monospace;
+    font-size: 12px;
+    width: 70px;
+	text-align: center;
+	margin: 3px;
+}
+
+.tblMatriz {
+	background-color: #e6e6e6;
+	font-size: 14px;
+}
+
+.textovertical {
+    -moz-transform: rotate(270deg);
+    -moz-transform-origin: 50% 50%;
+	-webkit-transform: rotate(270deg);
+	-webkit-transform-origin: 50% 50%;	
+    display: table-cell;
+    height: 200px;
+    vertical-align: middle;
+    width: 200px;
+}
+
+.tblNormal {
+    color: white;
+    font-family: Arial;
+    font-size: 16px;
+    margin: 0 auto;
+    text-align: center;
+	width: 90%;
+}

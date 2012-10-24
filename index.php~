@@ -25,7 +25,7 @@ require_once "mainframe/autoload.php";
 
 </head>
 	<body style="background-color: darkcyan;">
-		<div id='_all'>
+		<center>
 			<div id='_menu'>
 				<ul>
 					<li>
@@ -45,6 +45,6 @@ require_once "mainframe/autoload.php";
 			<div id='_content'>
 
 			</div>	<!-- FIM DA DIV _content -->	
-		</div>	<!-- FIM DA DIV _all -->	
+		</center>	<!-- FIM DA DIV _all -->	
     </body>
 </html>

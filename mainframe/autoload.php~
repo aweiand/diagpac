@@ -2,8 +2,8 @@
 GLOBAL $CFG;
 $CFG = new stdClass();
 
-$CFG->path = $_SERVER['DOCUMENT_ROOT'] . "/diagpac/mainframe/";
-$CFG->addr = "http://" . $_SERVER['SERVER_NAME'] . "/diagpac/mainframe/";
+$CFG->path = $_SERVER['DOCUMENT_ROOT'] . "/tools/mainframe/";
+$CFG->addr = "http://" . $_SERVER['SERVER_NAME'] . "/tools/mainframe/";
 $CFG->docs = $_SERVER['DOCUMENT_ROOT'];
 
 require_once($CFG->path . "/plugins/adodb/adodb.inc.php");
