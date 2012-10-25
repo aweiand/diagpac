@@ -12,7 +12,7 @@
  * @package diagpac
  */
 
-class diags extends data {
+class diags {
 	function diags(){
 	
 	}
@@ -29,6 +29,7 @@ class diags extends data {
 	 *	@return recordset
 	 */
 	function _get($tabela, $where = false, $join = false, $order = false){
+		$db = new data();
 		$cmdSQL = "SELECT * FROM ".$tabela;
 		if ($join)
 			$cmdSQL.=" INNER JOIN ".$join;
@@ -41,7 +42,7 @@ class diags extends data {
 			
 		//echo $cmdSQL;
 		
-		$ret = parent::query($cmdSQL);
+		$ret = $db->query($cmdSQL);
 		//$db->gravaLog('_query',$cmdSQL);
 		return $ret;
 	}	
@@ -54,8 +55,8 @@ class diags extends data {
      * @return Recordset - com dados da Inserção Realizada.
      */   	
 	function _insrt($tabela, $dados){
-		$db = new dataPlano();
-		if (parent::_insrt($tabela, $dados))
+		$db = new data();
+		if ($db->_insrt($tabela, $dados))
 			return true;
 		else
 			return false;
@@ -70,8 +71,8 @@ class diags extends data {
      * @return recordset - com dados da Consulta Realizada
      */    
     function _updt($tabela, $dados, $id) { 
-		$db = new dataPlano();
-        if (parent::_updt($tabela, $dados, $id)) 
+		$db = new data();
+        if ($db->_updt($tabela, $dados, $id)) 
 			return true;
         else
 			return false;
@@ -85,13 +86,54 @@ class diags extends data {
      * @return recordset - com dados da Consulta Realizada
      */    
     function _del($tabela, $id) { 
-		$db = new dataPlano();
+		$db = new data();
 		$cmdSQL = "DELETE FROM ". $tabela . " WHERE ". $id;
-        if (parent::command($cmdSQL)) 
+        if ($db->command($cmdSQL)) 
 			return true;
         else
 			return false;
     }    		
+
+	function allDoencas(){
+		$ret = $this->_get("doencas");
+		$str = "<ul>";
+		while(!$ret->EOF){
+			$str.= '<li data-id="'.$ret->Fields("doeid").'">'.
+						$ret->Fields("doenome")
+					.'</li>';
+			$ret->MoveNext();
+		};
+		$str.= "</ul>";
+		return $str;
+	}
+
+	function allSintomas(){
+		$ret = $this->_get("sintomas");
+		$str = "<ul>";
+		while(!$ret->EOF){
+			$str.= '<li data-id="'.$ret->Fields("sinid").'">'.
+						$ret->Fields("sinnome")
+					.'</li>';
+			$ret->MoveNext();
+		};
+		$str.= "</ul>";
+		return $str;
+	}
+
+	function allTratamentos(){
+		$ret = $this->_get("tratamentos");
+		$str = "<ul>";
+		while(!$ret->EOF){
+			$str.= '<li data-id="'.$ret->Fields("traid").'">'.
+						$ret->Fields("tranome")
+					.'</li>';
+			$ret->MoveNext();
+		};
+		$str.= "</ul>";
+		return $str;
+	}
+
+
 	
 }
 ?>

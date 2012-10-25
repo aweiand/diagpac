@@ -25,26 +25,34 @@ require_once "mainframe/autoload.php";
 
 </head>
 	<body style="background-color: darkcyan;">
-		<center>
+		<div id='_all'>
 			<div id='_menu'>
 				<ul>
 					<li>
-						<span style="top:15px; position: relative;">Home</span>
+						<span style="top:15px; position: relative;">
+							<a href="index.php">Home</a>
+						</span>
 					</li>
 					<li>
-						<span style="top:15px; position: relative;">Consultar</span>
+						<span style="top:15px; position: relative;">
+							<a href="index.php">Consultar</a>
+						</span>
 					</li>
 					<li>
-						<span style="top:15px; position: relative;">Cad. Paciente</span>
+						<span style="top:15px; position: relative;">
+							<a href="index.php">Cad. Paciente</a>
+						</span>
 					</li>
 					<li>
-						<span style="top:15px; position: relative;">Cadastros</span>
+						<span style="top:15px; position: relative;">
+							<a href="index.php">Cadastros</a>
+						</span>
 					</li>
 				</ul>
 			</div> <!-- FIM DA DIV _menu -->	
 			<div id='_content'>
 
 			</div>	<!-- FIM DA DIV _content -->	
-		</center>	<!-- FIM DA DIV _all -->	
+		</div>	<!-- FIM DA DIV _all -->	
     </body>
 </html>

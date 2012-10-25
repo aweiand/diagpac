@@ -17,8 +17,8 @@ class data{
     
 	var $db;
     var $debug		= false;
-	var	$server		= "localhost";
-	var	$database	= "planestrat";
+	var	$server		= "127.0.0.1";
+	var	$database	= "diagpac";
 	var	$user		= "root";
 	var	$password	= "root";
         
@@ -144,7 +144,7 @@ class data{
      */
     function gravaLog($action, $dado) {
     	$dado = str_replace('\'', ' ', $dado);
-    	$cmdSQL = "INSERT INTO log VALUES(" . $this->seed('log', 'cod_log') . ",'" . $action . "','" . $dado . "',NOW())";
+    	$cmdSQL = "INSERT INTO log VALUES(" . $this->seed('log', 'logid') . ",'" . $action . "','" . $dado . "',NOW())";
     	if ($this->query($cmdSQL))
     		return true;
     	else

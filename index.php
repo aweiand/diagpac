@@ -27,20 +27,7 @@ require_once "mainframe/autoload.php";
 	<body style="background-color: darkcyan;">
 		<div id='_all'>
 			<div id='_menu'>
-				<ul>
-					<li>
-						<span style="top:15px; position: relative;">Home</span>
-					</li>
-					<li>
-						<span style="top:15px; position: relative;">Consultar</span>
-					</li>
-					<li>
-						<span style="top:15px; position: relative;">Cad. Paciente</span>
-					</li>
-					<li>
-						<span style="top:15px; position: relative;">Cadastros</span>
-					</li>
-				</ul>
+				<?php include "menu.php" ?>
 			</div> <!-- FIM DA DIV _menu -->	
 			<div id='_content'>
 

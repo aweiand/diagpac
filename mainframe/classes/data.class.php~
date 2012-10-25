@@ -17,8 +17,8 @@ class data{
     
 	var $db;
     var $debug		= false;
-	var	$server		= "localhost";
-	var	$database	= "planestrat";
+	var	$server		= "127.0.0.1";
+	var	$database	= "diagpac";
 	var	$user		= "root";
 	var	$password	= "root";
         
@@ -38,7 +38,7 @@ class data{
 	 */    
     function startDB(){
             $CONN = ADONewConnection('mysql');
-            $CONN->Connect($server, $user, $password, $database);
+            $CONN->Connect($this->server, $this->user, $this->password, $this->database);
             $CONN->Execute("SET NAMES utf-8;");
             $CONN->debug = $this->debug;
             return $CONN;

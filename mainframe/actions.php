@@ -54,7 +54,7 @@ if (isset($post["username"]) && (isset($post['pass']))) {
 
 $uti   = new utils();
 $db    = new data();
-$plano = new diags();
+$diags = new diags();
 
 //############# Final das Classes padrão para os cases #############
 if (isset($post['action'])){
@@ -83,8 +83,6 @@ if (isset($post['action'])){
 				echo 0;
 			}
 		} break;		
-
-
 		
 	}
 }

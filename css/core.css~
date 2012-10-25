@@ -3,6 +3,7 @@
 #_all {
 	margin: 0 auto;
 	width: 800px;
+	height: auto;
 	background-color: #e6e6e6;
 }
 
@@ -37,4 +38,5 @@
 	height: auto;
 	float: left;
 	background-color: black;
+	margin-top: 40px;
 }
