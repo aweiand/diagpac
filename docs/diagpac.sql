@@ -20,7 +20,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `consultas`;
 CREATE TABLE `consultas` (
-  `conid` int(11) NOT NULL,
+  `conid` int(11) NOT NULL AUTO_INCREMENT,
   `pacid` int(11) NOT NULL,
   `condata` date NOT NULL,
   `conhora` time NOT NULL,
@@ -89,7 +89,7 @@ CREATE TABLE `consulta_tratamento` (
 -- ----------------------------
 DROP TABLE IF EXISTS `doencas`;
 CREATE TABLE `doencas` (
-  `doeid` int(11) NOT NULL,
+  `doeid` int(11) NOT NULL AUTO_INCREMENT,
   `doenome` varchar(255) NOT NULL,
   PRIMARY KEY (`doeid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -104,11 +104,11 @@ CREATE TABLE `doencas` (
 DROP TABLE IF EXISTS `doenca_sintoma`;
 CREATE TABLE `doenca_sintoma` (
   `doeid` int(11) NOT NULL,
-  `doesin` int(11) NOT NULL,
-  PRIMARY KEY (`doeid`,`doesin`),
-  KEY `doesin` (`doesin`),
+  `sinid` int(11) NOT NULL,
+  PRIMARY KEY (`doeid`,`sinid`),
+  KEY `sinid` (`sinid`),
   CONSTRAINT `doenca_sintoma_ibfk_1` FOREIGN KEY (`doeid`) REFERENCES `doencas` (`doeid`),
-  CONSTRAINT `doenca_sintoma_ibfk_2` FOREIGN KEY (`doesin`) REFERENCES `sintomas` (`sinid`)
+  CONSTRAINT `doenca_sintoma_ibfk_2` FOREIGN KEY (`sinid`) REFERENCES `sintomas` (`sinid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -121,11 +121,11 @@ CREATE TABLE `doenca_sintoma` (
 DROP TABLE IF EXISTS `doenca_tratamento`;
 CREATE TABLE `doenca_tratamento` (
   `doeid` int(11) NOT NULL,
-  `doetraid` int(11) NOT NULL,
-  PRIMARY KEY (`doeid`,`doetraid`),
-  KEY `doetraid` (`doetraid`),
+  `traid` int(11) NOT NULL,
+  PRIMARY KEY (`doeid`,`traid`),
+  KEY `traid` (`traid`),
   CONSTRAINT `doenca_tratamento_ibfk_1` FOREIGN KEY (`doeid`) REFERENCES `doencas` (`doeid`),
-  CONSTRAINT `doenca_tratamento_ibfk_2` FOREIGN KEY (`doetraid`) REFERENCES `tratamentos` (`traid`)
+  CONSTRAINT `doenca_tratamento_ibfk_2` FOREIGN KEY (`traid`) REFERENCES `tratamentos` (`traid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -137,7 +137,7 @@ CREATE TABLE `doenca_tratamento` (
 -- ----------------------------
 DROP TABLE IF EXISTS `pacientes`;
 CREATE TABLE `pacientes` (
-  `pacid` int(11) NOT NULL,
+  `pacid` int(11) NOT NULL AUTO_INCREMENT,
   `pacnome` varchar(255) DEFAULT NULL,
   `pactel` varchar(20) DEFAULT NULL,
   `pacend` varchar(255) DEFAULT NULL,
@@ -170,7 +170,7 @@ CREATE TABLE `paciente_consulta` (
 -- ----------------------------
 DROP TABLE IF EXISTS `sintomas`;
 CREATE TABLE `sintomas` (
-  `sinid` int(11) NOT NULL,
+  `sinid` int(11) NOT NULL AUTO_INCREMENT,
   `sinnome` varchar(255) NOT NULL,
   PRIMARY KEY (`sinid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -184,11 +184,27 @@ CREATE TABLE `sintomas` (
 -- ----------------------------
 DROP TABLE IF EXISTS `tratamentos`;
 CREATE TABLE `tratamentos` (
-  `traid` int(11) NOT NULL,
+  `traid` int(11) NOT NULL AUTO_INCREMENT,
   `tranome` varchar(255) NOT NULL,
   PRIMARY KEY (`traid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tratamentos
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `log`
+-- ----------------------------
+DROP TABLE IF EXISTS `log`;
+CREATE TABLE `log` (
+  `logid` int(11) NOT NULL AUTO_INCREMENT,
+  `logaction` varchar(255),
+  `logtxt` text,
+  `logdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`logid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of log
 -- ----------------------------

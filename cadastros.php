@@ -9,21 +9,34 @@ $diags = new diags();
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Planejamento Estratégico</title>
+<title>DiagPac - Diagnóstico de Pacientes</title>
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
 <script type="text/javascript" src="<?php echo $CFG->addr ?>plugins/jquery/js/jquery-1.5.js"></script>
 <script type="text/javascript" src="<?php echo $CFG->addr ?>plugins/jquery/js/jquery-ui-1.8.18.custom.min.js"></script>
+<script type="text/javascript" src="<?php echo $CFG->addr ?>plugins/jquery/jquery.multiselect.js"></script>
+<script type="text/javascript" src="<?php echo $CFG->addr ?>plugins/jquery/jquery.multiselect.filter.js"></script>        
 <script type="text/javascript" src="js/funcs.js"></script>
 <script type="text/javascript" src="js/eventos.js"></script>
 
 <link rel="stylesheet" type="text/css" href="<?php echo $CFG->addr ?>plugins/jquery/ui/css/custom-theme/jquery-ui-1.8.13.custom.css"/>
+<link rel="stylesheet" type="text/css" href="<?php echo $CFG->addr ?>plugins/jquery/jquery.multiselect.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo $CFG->addr ?>plugins/jquery/jquery.multiselect.filter.css" />     
 <link rel="stylesheet" type="text/css" href="css/core.css"/>
 <link rel="stylesheet" type="text/css" href="css/comuns.css"/>
+
 
 <script type="text/javascript">
 	$(function() {
     	$( "#acordion" ).accordion();
+    	
+		$(".multisel").multiselect({
+		    maxWidth:160,
+		    selectedList:5,
+		    show: ['slide', 500],
+		    hide: ['explode', 500],
+		    autoOpen: false
+		}).multiselectfilter();
     });
 </script>
 
@@ -42,7 +55,7 @@ $diags = new diags();
 								<td colspan='2'>
 									<label>
 										<span>Nome da Doença</span>
-										<input type="text" name="doenome" />
+										<input type="text" name="doenome" id="doenome"/>
 									</label>
 								</td>
 							</tr>
@@ -50,11 +63,11 @@ $diags = new diags();
 								<td>
 									<label>
 										<span>Sintomas</span>
-										<select name='doe-sinid' id='doe-sinid'>
+										<select name='doe-sinid' id='doe-sinid' class='multisel' multiple="multiple">
 											<?php
 												$rs = $diags->_get("sintomas");
 												while(!$rs->EOF){
-													echo "<option value='".$rs->Fields("traid")."'>".$rs->Fields("tranome")."</option>";
+													echo "<option value='".$rs->Fields("sinid")."'>".$rs->Fields("sinnome")."</option>";
 													$rs->MoveNext();												
 												}
 											?>
@@ -64,7 +77,7 @@ $diags = new diags();
 								<td>
 									<label>
 										<span>Tratamento</span>
-										<select name='doe-traid' id='doe-traid'>
+										<select name='doe-traid' id='doe-traid' class='multisel' multiple="multiple">
 											<?php
 												$rs = $diags->_get("tratamentos");
 												while(!$rs->EOF){
@@ -82,7 +95,7 @@ $diags = new diags();
 								</td>
 							</tr>
 						</table>
-						<div id='allDoenca'>
+						<div id='allDoenca' style=''>
 							<?php echo $diags->allDoencas() ?>
 						</div>
 					</div>
@@ -94,7 +107,7 @@ $diags = new diags();
 								<td>
 									<label>
 										<span>Nome do Sintoma</span>
-										<input type="text" name="sinnome" />
+										<input type="text" name="sinnome" id="sinnome"/>
 									</label>
 								</td>
 							</tr>
@@ -116,7 +129,7 @@ $diags = new diags();
 								<td>
 									<label>
 										<span>Nome do Tratamento</span>
-										<input type="text" name="traid" />
+										<input type="text" name="tranome" id="tranome"/>
 									</label>
 								</td>
 							</tr>

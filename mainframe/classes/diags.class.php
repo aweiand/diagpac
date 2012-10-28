@@ -97,10 +97,39 @@ class diags {
 	function allDoencas(){
 		$ret = $this->_get("doencas");
 		$str = "<ul>";
+		
+		$bgCor = "#FFF";
 		while(!$ret->EOF){
-			$str.= '<li data-id="'.$ret->Fields("doeid").'">'.
-						$ret->Fields("doenome")
-					.'</li>';
+			if ($bgCor == "#e6e6e6")
+				$bgCor = "#FFF";
+			else
+				$bgCor = "#e6e6e6";
+			
+			$str.= '<li data-id="'.$ret->Fields("doeid").'" style="background-color: '.$bgCor.'; padding: 5px;">'.
+						'<span>'.$ret->Fields("doenome").'<span>
+						<span style="float: right;"><button onclick=\'deletar('.$ret->Fields("doeid").',"doencas", this)\'>Del.</button></span>';
+
+			$sint = $this->_get("sintomas s","doeid=".$ret->Fields("doeid"),"doenca_sintoma sd ON (sd.sinid = s.sinid)");
+			if ($sint->RecordCount() != 0){
+				$str.= '<ul><li>Sintomas:</li>';
+				while(!$sint->EOF){
+					$str.= '<li><span>'.$sint->Fields("sinnome").'<span></li>';
+					$sint->MoveNext();
+				};
+				$str.= '</ul>';
+			}
+			$str.= "<br />";
+			$trat = $this->_get("tratamentos t","doeid=".$ret->Fields("doeid"),"doenca_tratamento td ON (td.traid = t.traid) ");
+			if ($trat->RecordCount() != 0){
+				$str.= '<ul><li>Tratamentos:</li>';
+				while(!$trat->EOF){
+					$str.= '<li><span>'.$trat->Fields("tranome").'<span></li>';
+					$trat->MoveNext();
+				};
+				$str.= '</ul>';
+			}
+
+			$str.= '</li>';
 			$ret->MoveNext();
 		};
 		$str.= "</ul>";
@@ -110,9 +139,16 @@ class diags {
 	function allSintomas(){
 		$ret = $this->_get("sintomas");
 		$str = "<ul>";
+		$bgCor = "#FFF";		
 		while(!$ret->EOF){
-			$str.= '<li data-id="'.$ret->Fields("sinid").'">'.
-						$ret->Fields("sinnome")
+			if ($bgCor == "#e6e6e6")
+				$bgCor = "#FFF";
+			else
+				$bgCor = "#e6e6e6";
+						
+			$str.= '<li data-id="'.$ret->Fields("sinid").'" class="listaData" style="background-color: '.$bgCor.'; padding: 5px;">'.
+						$ret->Fields("sinnome").
+"<span style='float: right;'><button onclick='deletar(\"sinid=".$ret->Fields("sinid")."\",\"sintomas\", this)'>Del.</button></span>"
 					.'</li>';
 			$ret->MoveNext();
 		};
@@ -123,9 +159,16 @@ class diags {
 	function allTratamentos(){
 		$ret = $this->_get("tratamentos");
 		$str = "<ul>";
+		$bgCor = "#FFF";
 		while(!$ret->EOF){
-			$str.= '<li data-id="'.$ret->Fields("traid").'">'.
-						$ret->Fields("tranome")
+			if ($bgCor == "#e6e6e6")
+				$bgCor = "#FFF";
+			else
+				$bgCor = "#e6e6e6";
+						
+			$str.= '<li data-id="'.$ret->Fields("traid").'" class="listaData" style="background-color: '.$bgCor.'; padding: 5px;">'.
+						$ret->Fields("tranome").
+						"<span style='float: right;'><button onclick=\"deletar('traid=".$ret->Fields("traid")."','tratamentos', this)\">Del.</button></span>"
 					.'</li>';
 			$ret->MoveNext();
 		};
@@ -133,7 +176,20 @@ class diags {
 		return $str;
 	}
 
-
+	function allPacientes(){
+		$ret = $this->_get("pacientes");
+		$str = "<ul>";
+		while(!$ret->EOF){
+			$str.= '<li data-id="'.$ret->Fields("pacid").'" class="listaData">'.
+						"Nome: ".$ret->Fields("pacnome")." <br />
+						Telefone: ".$ret->Fields("pactel").
+						"<span style='float: right;'><button onclick=\"deletar(\'pacid=".$ret->Fields("pacid")."\',\'pacientes\', this)\">Del.</button></span>"
+					.'</li>';
+			$ret->MoveNext();
+		};
+		$str.= "</ul>";
+		return $str;
+	}
 	
 }
 ?>

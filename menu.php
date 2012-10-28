@@ -1,3 +1,7 @@
+<span>
+	<img src='img/informatica.jpg' style='width: 120px' />
+	<b>DiagPac</b>
+</span>
 <ul>
 	<li>
 		<span style="top:15px; position: relative;">
@@ -17,6 +21,11 @@
 	<li>
 		<span style="top:15px; position: relative;">
 			<a href="cadastros.php">Cadastros</a>
+		</span>
+	</li>
+	<li>
+		<span style="top:15px; position: relative;">
+			<a href="historico.php">Históricos</a>
 		</span>
 	</li>
 </ul>
